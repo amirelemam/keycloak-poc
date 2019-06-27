@@ -1,0 +1,9 @@
+{
+  "realm": "development",
+  "auth-server-url": "http://localhost:8081/auth",
+  "ssl-required": "external",
+  "resource": "frontend-js",
+  "public-client": true,
+  "confidential-port": 0,
+  "token-store": "cookie"
+}
