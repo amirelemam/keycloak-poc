@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/carenet/keycloak-poc",
+    "url": "https://gitlab.com/carenet/keycloak-poc"
   },
   "author": "",
   "license": "ISC",

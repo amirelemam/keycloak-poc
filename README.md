@@ -16,25 +16,40 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
     * Menu *Clients*
     * Create
         * *Client ID:* poc-client
-        * Clicar em salvar
+        * Clicar em *save*
     * Em *Client Protocol* selecionar *openid-connect* 
     * Em *Access Type*: selecionar *confidential*
     * Em *Authorization Enabled* selecionar *ON*
     * Em *Valid Redirect URIs* preencher com none
-    * Salvar
+    * Clicar em *save*
+    
+4) Criar uma *role* personalizada
+    * Menu *Roles*
+    * Clicar em *Add Role*
+        * Em *Role Name* preencher com manage_system_parameters
+        
+5) Criar um *group* personalizado
+    * Menu *Groups*
+    * Clicar em *New*
+        * Em *Name* preencher com Supervisores
+        * Na aba *Role Mappings*
+            * Clicar em manage_system_parameters
+            * Clicar em *Add selected*
 
-4) Liberar acesso aos usuários
+5) Liberar acesso para gerenciar os usuários
     * Acessar a aba *Service Account Roles*
     * Em *Client Roles* selecionar *realm-management*
     * Adicionar a role *manager-users*
 
-5) Obter um access token para o client
+6) Obter um access token para o client
     * A secret está na aba *Credentials* do client
     ```
-    http --form :8081/auth/realms/poc/protocol/openid-connect/token grant_type=client_credentials -a poc-client:<secret>
+    http --form :8081/auth/realms/poc/protocol/openid-connect/token \ 
+    grant_type=client_credentials \ 
+    -a poc-client:<secret>
     ```
 
-6) Criar um usuário para o *realm* poc
+7) Criar um usuário para o *realm* poc
     ``` 
     http :8081/auth/admin/realms/poc/users Authorization:"Bearer <ACCESS_TOKEN>" \
     enabled=true \
@@ -45,26 +60,36 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
     attributes:='{"phone":["11-1234-5678"], "address":"Av. Paulista, 1" }'
     ```
 
-7) Lista usuários
+8) Lista os usuários
     ```
     http :8081/auth/admin/realms/poc/users Authorization:"Bearer <ACCESS_TOKEN>"
     ```
     
-8) Atribuir uma senha ao usuário
+9) Atribuir uma senha ao usuário
     ```
     http PUT :8081/auth/admin/realms/poc/users/<USER_ID>/reset-password Authorization:"Bearer <ACCESS_TOKEN>" \
     type=password \
     value=123456 \
     temporary=true
     ```
+    
+10) Lista os grupos
+    ```
+    http :8081/auth/admin/realms/poc/groups Authorization:"Bearer <ACCESS_TOKEN>"
+    ```
 
-9) Criar o *client* para o frontend
+11) Vincular o usuário a um grupo
+    ```
+    http PUT :8081/auth/admin/realms/poc/users/<USER_ID>/groups/<GROUP_ID> Authorization:"Bearer <ACCESS_TOKEN>"
+    ```
+
+12) Criar o *client* para o frontend
     * Menu *Clients*
     * Create
         * *Client ID:* poc-js
         * *RootURL:* http://localhost:5000
         * *Client Protocol* selecionar *openid-connect*  
-        * Clicar em salvar
+        * Clicar em *save*
         
 
 ## Iniciando o servidor
@@ -75,3 +100,9 @@ npm start
 
 ## Acesso
 http://localhost:5000
+
+## Obsevações
+* Para multiempresa a ferramenta sugere a criação de diferentes *realms*.
+* É possivel configurar os *themes* de login no menu *Realm Settings*, aba *Themes*.
+* É possivel configurar os *locales* no menu *Realm Settings*, aba *Themes*.
+* É possível alterar a duração dos *tokens* no menu *Realm Settings*, aba *Tokens*.
