@@ -3,10 +3,11 @@
 ## Subindo o Keycloak
 docker run --name keycloak -p 8081:8080 -d -e KEYCLOAK_USER=user -e KEYCLOAK_PASSWORD=change jboss/keycloak:6.0.1
 
-
 ## Configuração passo a passo
+All examples use [HTTPie](https://httpie.org/)
+
 1) Criar *realm* poc
-2) Listar os endpoints para o realm poc
+2) Listar os endpoints para o *realm* poc
 ```
 http :8081/auth/realms/poc/.well-known/uma2-configuration
 ```
