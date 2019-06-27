@@ -14,7 +14,7 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
 3) Criar um clientId do tipo client_credentials
     * Menu *Clients*
     * Create
-        * **Client ID:** poc-client
+        * *Client ID:* poc-client
         * Clicar em salvar
     * Em *Client Protocol* selecionar *openid-connect* 
     * Em *Access Type*: selecionar *confidential*
@@ -49,7 +49,7 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
     http :8081/auth/admin/realms/poc/users Authorization:"Bearer <ACCESS_TOKEN>"
     ```
     
-8) Atribuir uma senha
+8) Atribuir uma senha ao usuário
     ```
     http PUT :8081/auth/admin/realms/poc/users/<USER_ID>/reset-password Authorization:"Bearer <ACCESS_TOKEN>" \
     type=password \
@@ -57,7 +57,7 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
     temporary=true
     ```
 
-9) Criar um clientId para o frontend
+9) Criar o *client* para o frontend
     * Menu *Clients*
     * Create
         * *Client ID:* poc-js
@@ -66,9 +66,11 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
         * Clicar em salvar
         
 
-## Iniciando
-```npm install```
-```npm start``` 
+## Iniciando o servidor
+```
+npm install
+npm start
+``` 
 
 ## Acesso
 http://localhost:5000
