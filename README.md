@@ -5,27 +5,6 @@
 docker run --name keycloak -p 8081:8080 -d -e KEYCLOAK_USER=user -e KEYCLOAK_PASSWORD=change jboss/keycloak:6.0.1
 ```
 
-## Subindo o Keycloak com o *theme* Carenet
-```
-docker run --name keycloak -p 8081:8080 -d -e KEYCLOAK_USER=user -e KEYCLOAK_PASSWORD=change -v /<PATH_TO_THIS_PROJECT>/themes/carenet:/opt/jboss/keycloak/themes/carenet  jboss/keycloak:6.0.1
-```
-
-## Editando um *theme* on-the-fly
-É recomendado desligar o cache do keycloak para editar um *theme* com o servidor ligado, para isso execute:
-```
-docker exec -it <container_id> bash
-vi /opt/jboss/keycloak/standalone/configuration/standalone.xml
-```
-
-E altere as propriedades *staticMaxAge* para -1, *cacheTemplates* para false e cacheThemes para false. Ex:
-
-```
-<staticMaxAge>-1</staticMaxAge>
-<cacheThemes>false</cacheThemes>
-<cacheTemplates>false</cacheTemplates>
-```
-
-
 ## Configuração passo a passo
 All examples use [HTTPie](https://httpie.org/)
 
@@ -123,6 +102,28 @@ npm start
 
 ## Acesso
 http://localhost:5000
+
+## Personalizando os *themes*
+
+### Subindo o Keycloak com o *theme* Carenet
+```
+docker run --name keycloak -p 8081:8080 -d -e KEYCLOAK_USER=user -e KEYCLOAK_PASSWORD=change -v /<PATH_TO_THIS_PROJECT>/themes/carenet:/opt/jboss/keycloak/themes/carenet  jboss/keycloak:6.0.1
+```
+
+### Editando um *theme* on-the-fly
+É recomendado desligar o cache do keycloak para editar um *theme* com o servidor ligado, para isso execute:
+```
+docker exec -it <container_id> bash
+vi /opt/jboss/keycloak/standalone/configuration/standalone.xml
+```
+
+E altere as propriedades *staticMaxAge* para -1, *cacheTemplates* para false e cacheThemes para false. Ex:
+
+```
+<staticMaxAge>-1</staticMaxAge>
+<cacheThemes>false</cacheThemes>
+<cacheTemplates>false</cacheTemplates>
+```
 
 ## Obsevações
 * Para multiempresa a ferramenta sugere a criação de diferentes *realms*.
