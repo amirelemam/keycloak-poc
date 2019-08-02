@@ -39,7 +39,7 @@ http :8081/auth/realms/poc/.well-known/uma2-configuration
             * Clicar em *Add selected*
 
 5) Liberar acesso para gerenciar os usuários
-    * Acessar a aba *Service Account Roles*
+    * Acessar a aba *Service Account Roles* no menu *Clients* dentro de poc-client
     * Em *Client Roles* selecionar *realm-management*
     * Adicionar a role *manager-users*
 
@@ -125,7 +125,17 @@ E altere as propriedades *staticMaxAge* para -1, *cacheTemplates* para false e c
 <cacheTemplates>false</cacheTemplates>
 ```
 
-## Obsevações
+## Adendos
+### Autênticar manuamente com usuário e senha
+```
+http --form :8081/auth/realms/poc/protocol/openid-connect/token \ 
+grant_type=password \
+username=poc \
+password=123456 \
+-a poc-client:<secret>
+```
+
+## Observações
 * Para multiempresa a ferramenta sugere a criação de diferentes *realms*.
 * É possivel configurar os *themes* de login no menu *Realm Settings*, aba *Themes*.
 * É possivel configurar os *locales* no menu *Realm Settings*, aba *Themes*.
