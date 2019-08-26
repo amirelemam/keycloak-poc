@@ -1,1 +1,0 @@
-O theme base está aqui apenas como referência para personalizar os themes, ao subir o docker esse diretório não é lido.
