@@ -42,7 +42,7 @@ GET localhost:8081/auth/realms/poc/.well-known/uma2-configuration
 
 6. Liberar acesso para gerenciar os usuários
 
-   - Acessar a aba _Service Account Roles_ no menu _Clients_ dentro de poc-client
+   - No menu _Clients_, em poc-client, acessar a aba _Service Account Roles_
    - Em _Client Roles_ selecionar _realm-management_
    - Adicionar a role _manager-users_
 

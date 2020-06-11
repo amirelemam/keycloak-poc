@@ -1,0 +1,12 @@
+{
+  "realm": "poc",
+  "auth-server-url": "http://localhost:8081/auth",
+  "ssl-required": "external",
+  "resource": "poc-client",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "b66247e7-e0b1-46d0-b5ad-d30bbd57f608"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {}
+}
